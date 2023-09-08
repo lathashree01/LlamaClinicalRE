@@ -1,2 +1,2 @@
-# LlamaClinicalRE
-LLM based clinical RE framework
+# Llama Clinical RE
+LLM-based clinical RE framework
