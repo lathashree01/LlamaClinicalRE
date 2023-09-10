@@ -27,11 +27,7 @@ The code directory is structured as follows:
 LLamaClincialRE/
 ├── datasets/
 │   ├── euadr/
-│   │   ├── train.tsv
-│   │   ├── test.tsv
 │   ├──GAD/
-│   │   ├── train.tsv
-│   │   ├── test.tsv
 │   ├── i2b2_2010/   
 │   └──n2c2_2018/ 
 ├── notebooks/
