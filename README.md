@@ -46,39 +46,44 @@ LLamaClincialRE/
 
 ## Datasets
 
-The datasets used in this project are as follows:
-1. Clincial datasets: i2b2 2010 and n2c2 2018. Due to usage agreements, we have not shared the datsets, please use https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/ to gain access to the datasets.
-2. Biomedical datasets: GAD and EUADR. The datasets are available in the datasets folder.
+Pretraining datasets used in this project are as follows:
+- MIMIC-III: https://physionet.org/content/mimiciii/1.4/
+
+The evaluation datasets used in this project are as follows:
+- Clincial datasets: i2b2 2010 and n2c2 2018. Due to usage agreements, we have not shared the datsets, please use https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/ to gain access to the datasets.
+- Biomedical datasets: GAD and EUADR. The datasets are available in the datasets folder (preprocessed versions from https://github.com/dmis-lab/biobert ).
 
 ## Models
 
-The models used in this project are LLaMA 1 and LLaMA 2.
+The base models used in this project are LLaMA 1 and LLaMA 2.
 
 ## Set up and Installation
 
 ### 1. Clone the repository
 
 ```bash
-git clone
+git clone https://github.com/Lathashree01/LlamaClinicalRE.git
 ```
 
 ### 2. Install the requirements
+The requirements are divided into three environments:
+- clm_requirements.txt: Requirements for the DAP of LLaMA models
+- finetune_requirements.txt: Requirements for the fine-tuning the clincial LLaMA models 
+- ufcode_requirements.txt: Requirements for the UF code: used for supervised fine-tuning on n2c2 2018 dataset
 
+Example:
 ```bash
-pip install -r requirements.txt
+cd requirements
+pip install -r clm_requirements.txt
 ```
 
 ### 3. Download the models
-
-```bash
-
-
-```
+Please download LLaMA models from https://huggingface.co/meta-llama
 
 ### 4. Running the DAP
 
 ```bash
-python src/models/dap.py
+sh src/models/run_pt.sh
 ```
 
 ### 5. Running the Supervised Fine-tuning
@@ -87,8 +92,9 @@ python src/models/dap.py
 python src/models/lra.py
 ```
 
+### Results
 
-## Results
+Please refere to chapter 4 of the final report for the results.
 
 
 ## Acknowledgements
