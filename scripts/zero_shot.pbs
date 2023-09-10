@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -l walltime=40:00:00
+#PBS -l select=1:ncpus=12:mem=96gb:ngpus=1:gpu_type=RTX6000
+  
+module load anaconda3/personal
+source ~/anaconda3/etc/profile.d/conda.sh
+conda activate finetuneenv
+
+cd $PBS_O_WORKDIR
+
+python src/models/run_ft_benchmarks_zero_shot.py
