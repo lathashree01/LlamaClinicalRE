@@ -27,9 +27,9 @@ The code directory is structured as follows:
 LLamaClincialRE/
 ├── datasets/
 │   ├── euadr/
-│   ├──GAD/
+│   ├── GAD/
 │   ├── i2b2_2010/   
-│   └──n2c2_2018/ 
+│   └── n2c2_2018/ 
 ├── notebooks/
 ├── scripts/
 ├── models/
@@ -63,24 +63,38 @@ The base models used in this project are LLaMA 1 and LLaMA 2.
 
 ```bash
 git clone https://github.com/Lathashree01/LlamaClinicalRE.git
+cd LlamaClinicalRE
 ```
 
 ### 2. Install the requirements
-The requirements are divided into three environments:
+
+Create a virtual environment to install the requirements.
+
+The requirements are divided into two environments:
 - clm_requirements.txt: Requirements for the DAP of LLaMA models
-- finetune_requirements.txt: Requirements for the fine-tuning the clincial LLaMA models 
-- ufcode_requirements.txt: Requirements for the UF code: used for supervised fine-tuning on n2c2 2018 dataset
+- finetuneenv_requirements.txt: Requirements for the fine-tuning the original or Clincial LLaMA models 
 
 Example:
+
+Creating a virtual environment for DAP of LLaMA models
+```bash
+mkdir clmenv
+python3 -m venv clmenv
+source clmenv/bin/activate
+```
+
+Installing the requirements
 ```bash
 cd requirements
 pip install -r clm_requirements.txt
 ```
 
 ### 3. Download the models
-Please download LLaMA models from https://huggingface.co/meta-llama
+Please acquire access to LLaMA 1 from offical meta website by filling the request form or LLaMA2 models from https://huggingface.co/meta-llama
 
 ### 4. Running the DAP
+
+Change the model paths in the src/models/run_pt.sh file 
 
 ```bash
 sh src/models/run_pt.sh
@@ -89,9 +103,16 @@ sh src/models/run_pt.sh
 ### 5. Running the Supervised Fine-tuning
 
 ```bash
-python src/models/lra.py
+python src/models/run_ft_benchmarks.py --model_type llama1 --PATH_TO_ORIGINAL_WEIGHTS /path_to_base_model/ --PEFT_PATH /peft_model_path/ --mycache_dir cachedir
 ```
+Command line args:
 
+- model_type: llama1 or llama2 or llama1_pre or llama2_pre
+- PATH_TO_ORIGINAL_WEIGHTS: Path to the base model (llama models need to be downloaded before hand)
+- PEFT_PATH: Path to the peft model (Needed in case of fine-tuning Clincial LLAMA models)
+- mycache_dir: Path to the cache directory (Needed as llama2 is gated model, else huggingface cache will be used or tries to download from huggingface)
+
+**Please note:** Refer https://github.com/Lathashree01/ClinicalRE_n2c2 for fine-tuning the LLaMA models on n2c2 2018 dataset.
 ### Results
 
 Please refere to chapter 4 of the final report for the results.
@@ -99,7 +120,7 @@ Please refere to chapter 4 of the final report for the results.
 
 ## Acknowledgements
 
-This project is based on the following open-source projects for secondary development.
+This project is based on the following open-source projects for further development.
 
 - https://github.com/ymcui/Chinese-LLaMA-Alpaca/
 - https://github.com/uf-hobi-informatics-lab/NLPreprocessing
@@ -111,3 +132,7 @@ This project is based on the following open-source projects for secondary develo
 - https://github.com/huggingface/peft
 - https://github.com/huggingface/accelerate
 
+
+## Contact
+
+For any queries, please open Github issue.
