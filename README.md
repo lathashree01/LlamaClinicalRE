@@ -125,6 +125,7 @@ This project is based on the following open-source projects for further developm
 - https://github.com/ymcui/Chinese-LLaMA-Alpaca/
 - https://github.com/uf-hobi-informatics-lab/NLPreprocessing
 - https://github.com/uf-hobi-informatics-lab/ClinicalTransformerRelationExtraction
+- https://github.com/hushee69/biobert-relation-extraction
 
 
 ## Main libraries used
